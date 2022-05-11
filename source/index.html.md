@@ -100,7 +100,7 @@ API|Introduction|Trading area|
 4. Signature: sign = hmac.New(client_key, sign_str, sha256)
 5. Content-Type: application/x-www-form-urlencoded
 6. Coin/Innovation Zone interface, please put the parameters in the request body for the post interface request, and carry the get interface request in the url link
-7. 钱包账户接口，请将鉴权信息放在header头部信息，HOO-KEY = api key，Hoo-Sign = sign，Hoo-Timestamp = ts
+7. Wallet account interface, please put the authentication information in the header header information, HOO-KEY = api key, Hoo-Sign = sign, Hoo-Timestamp = ts
 8. API key has up to 5 white list IP addresses
 
 
