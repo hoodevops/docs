@@ -1,114 +1,126 @@
 ---
-title: Hoo API documentation
+title: Hoo API 文档
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+- shell
 
 search: False
 ---
 
-# Introduction
+# 简介
 
-## API Introduction
+## API 简介
 
-Welcome to use Hoo API！ You can use this API get market information, trading and managing your account.
+欢迎使用Hoo API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
 
-The code will display on the right side of this document. Currently we only provide "shell" code examples.
+在文档的右侧是代码，目前我们仅提供针对 `shell` 的代码示例。
 
-Welcome all professional maker strategies and organizations for long term market making program.
+交易市场分为币币交易和创新区交易。
 
-##  Wallet Account API
-Eligible to access portals:
+可以使用以下域名访问：api.hoolgd.com
 
-API|Introduction|
+欢迎有优秀 maker 策略且交易量大的机构参与长期做市商项目。
+
+##  钱包账户接口
+可以访问的接口如下：
+
+接口|说明|
 ----------------------|---------------------|---------------------|
-[GET /api/pub/v1/coins](#wallet-account-api-2)  |Get currency information interface|
-[GET /api/pub/v1/addresses](#add-the-address-for-obtaining-recharge)  |Add the address for obtaining recharge|
-[GET /api/pub/v1/deposit/bills](#get-recharge-records)  |Get recharge records|
-[POST /api/pub/v1/withdraw](#user-withdrawal-interface)  |User withdrawal interface|
-[GET /api/pub/v1/withdraw/bills](#get-user-withdrawal-records)  |Get user withdrawal records|
-[GET /api/pub/v1/account](#get-account-status)  |Get account status|
+[GET /api/pub/v1/coins](#91b7b9fcc6)  |获取币种信息接口|
+[GET /api/pub/v1/addresses](#98cff3e8b0)  |新增获取充值地址|
+[GET /api/pub/v1/deposit/bills](#e2a027ceb6)  |获取充值记录|
+[POST /api/pub/v1/withdraw](#da0ff3f199)  |用户提币接口|
+[GET /api/pub/v1/withdraw/bills](#dc0a5f2bd0)  |获取用户提币记录|
+[GET /api/pub/v1/account](#121b7ff6b1)  |获取账户状态|
 
 
-## Public API
-Verification free for below portals:
+## 公共接口
+不需要鉴权可访问接口如下：
 
-API|Introduction|Trading area|
+接口|说明|市场|
 ----------------------|---------------------|---------------------|
-[GET /open/v1/tickers/market](#all-trading-pairs-2)  |All trading pairs|Spot|
-[GET /open/v1/depth/market](#depth)  |Depth|Spot|
-[GET /open/v1/trade/market](#each-filled-orders-2)  |Each filled orders|Spot|
-[GET /open/v1/kline/market](#market-k-line-2)  |Market K line data|Spot|
-[GET /open/innovate/v1/tickers/market](#all-trading-pairs-2)  |All trading pairs|Innovate|
-[GET /open/innovate/v1/depth/market](#depth)  |Depth|Innovate|
-[GET /open/innovate/v1/trade/market](#each-filled-orders-2)  |Each filled orders|Innovate|
-[GET /open/innovate/v1/kline/market](#market-k-line-2)  |Market K line data|Innovate|
+[GET /open/v1/tickers/market](#495cebdeec-2)  |所有交易对|币币|
+[GET /open/v1/depth/market](#a1128a972d-2)  |深度|币币|
+[GET /open/v1/trade/market](#775841b581-2)  |逐笔成交|币币|
+[GET /open/v1/kline/market](#k-3)  |k线数据|币币|
+[GET /open/innovate/v1/tickers/market](#495cebdeec-2)  |所有交易对|创新区|
+[GET /open/innovate/v1/depth/market](#a1128a972d-2)  |深度|创新区|
+[GET /open/innovate/v1/trade/market](#775841b581-2)  |逐笔成交|创新区|
+[GET /open/innovate/v1/kline/market](#k-3)  |k线数据|创新区|
 
 
-## Verified API
-Eligible to access portals:
+## 鉴权接口
+可以访问的接口如下：
 
-API|Introduction|Trading area|
+接口|说明|市场|
 ----------------------|---------------------|---------------------|
-[GET /open/v1/tickers](#all-trading-pairs)  |All or one trading pair|Spot|
-[GET /open/v1/balance](#account-balance)  |Balance|Spot|
-[GET /open/v1/timestamp](#server-time-stamp)  |Server time stamp|Spot|
-[GET /open/v1/kline](#market-k-line)  |Market K line data|Spot|
-[GET /open/v1/depth](#market-depth)  |Market depth data|Spot|
-[GET /open/v1/tickers/trade](#get-last-5-trade-orders)  |Get last 5 trade orders|Spot|
-[POST /open/v1/orders/place](#place-new-order)  |Place new order|Spot|
-[POST /open/v1/orders/cancel](#cancel-an-order-in-order)  |Cancel an order in order|Spot|
-[POST /open/v1/orders/batcancel](#cancel-all-or-part-of-the-orders-in-order)  |Cancel all or part of the orders in order|Spot|
-[GET /open/v1/orders/last](#active-orders)  |Active orders|Spot|
-[GET /open/v1/orders](#order-history)  |Order history|Spot|
-[GET /open/v1/orders/detail](#get-order-details)  |Get an order details|Spot|
-[GET /open/v1/orders/detailmore](#paging-to-get-order-details)  |Paging to get order details|Spot|
-[GET /open/v1/orders/fee-rate](#get-the-user-39-s-transaction-fee-for-a-certain-transaction-pair)  |Get the user's transaction fee for a certain transaction pair|Spot|
-[GET /open/innovate/v1/tickers](#all-trading-pairs)  |All or one trading pair|Innovate|
-[GET /open/innovate/v1/balance](#account-balance)  |Balance|Innovate|
-[GET /open/innovate/v1/timestamp](#server-time-stamp)  |Server time stamp|Innovate|
-[GET /open/innovate/v1/kline](#market-k-line)  |Market K line data|Innovate|
-[GET /open/innovate/v1/depth](#market-depth)  |Market depth data|Innovate|
-[GET /open/innovate/v1/tickers/trade](#get-last-5-trade-orders)  |Get last 5 trade orders|Innovate|
-[POST /open/innovate/v1/orders/place](#place-new-order)  |Place new order|Innovate|
-[POST /open/innovate/v1/orders/cancel](#cancel-an-order-in-order)  |Cancel an order in order|Innovate|
-[POST /open/innovate/v1/orders/batcancel](#cancel-all-or-part-of-the-orders-in-order)  |Cancel all or part of the orders in order|Innovate|
-[GET /open/innovate/v1/orders/last](#active-orders)  |Active orders|Innovate|
-[GET /open/innovate/v1/orders](#order-history)  |Order history|Innovate|
-[GET /open/innovate/v1/orders/detail](#get-order-details)  |Get an order details|Innovate|
-[GET /open/v1/orders/detailmore](#paging-to-get-order-details)  |Paging to get order details|Innovate|
-[GET /open/v1/orders/fee-rate](#get-the-user-39-s-transaction-fee-for-a-certain-transaction-pair)  |Get the user's transaction fee for a certain transaction pair|Innovate|
+[GET /open/v1/tickers](#ebe64e52ff)  |全部或指定交易对|币币|
+[GET /open/v1/balance](#870c0ab88b)  |获取余额|币币|
+[GET /open/v1/timestamp](#fc5a31ea39)  |服务器时间戳|币币|
+[GET /open/v1/kline](#k-2)  |市场k线数据|币币|
+[GET /open/v1/depth](#0f7bd4961a)  |市场深度数据|币币|
+[GET /open/v1/tickers/trade](#5)  |获取最近5条成交记录|币币|
+[POST /open/v1/orders/place](#fd6ce2a756)  |下单|币币|
+[POST /open/v1/orders/cancel](#7742416be6)  |撤销单个订单|币币|
+[POST /open/v1/orders/batcancel](#cedb99e805)  |撤销全部或部分委托中订单|币币|
+[GET /open/v1/orders/last](#c2313ec9bf)  |委托中列表|币币|
+[GET /open/v1/orders](#cbbcc98be2)  |订单列表|币币|
+[GET /open/v1/orders/detail](#3fbc9cb788)  |单个订单成交明细|币币|
+[GET /open/v1/orders/detailmore](#d1baf83d74)  |分页获取成交明细|币币|
+[GET /open/v1/orders/fee-rate](#6033256dc0)  |获取用户某个交易对手续费|币币|
+[GET /open/innovate/v1/tickers](#ebe64e52ff)  |全部或指定交易对|创新区|
+[GET /open/innovate/v1/balance](#870c0ab88b)  |获取余额|创新区|
+[GET /open/innovate/v1/timestamp](#fc5a31ea39)  |服务器时间戳|创新区|
+[GET /open/innovate/v1/kline](#k-2)  |市场k线数据|创新区|
+[GET /open/innovate/v1/depth](#0f7bd4961a)  |市场深度数据|创新区|
+[GET /open/innovate/v1/tickers/trade](#5)  |获取最近5条成交记录|创新区|
+[POST /open/innovate/v1/orders/place](#fd6ce2a756)  |下单|创新区|
+[POST /open/innovate/v1/orders/cancel](#7742416be6)  |撤销单个订单|创新区|
+[POST /open/innovate/v1/orders/batcancel](#cedb99e805)  |撤销全部或部分委托中订单|创新区|
+[GET /open/innovate/v1/orders/last](#c2313ec9bf)  |委托中列表|创新区|
+[GET /open/innovate/v1/orders](#cbbcc98be2)  |订单列表|创新区|
+[GET /open/innovate/v1/orders/detail](#3fbc9cb788)  |单个订单成交明细|创新区|
+[GET /open/innovate/v1/orders/detailmore](#d1baf83d74)  |分页获取成交明细|创新区|
+[GET /open/innovate/v1/orders/fee-rate ](#6033256dc0) |获取用户某个交易对手续费|创新区|
 
 
-# Connection Guide
+# 接入说明
 
-## Restful Host:
+## Restful host:
     https://api.hoolgd.com
 
-## Websocket Host:
-    Spot
+## Websocket host:
+    币币交易
     wss://api.hoolgd.com/ws
 
-    Innovate
+    创新区交易
     wss://api.hoolgd.com/wsi
 
+## 鉴权说明
 
-## Verification Notice
-1. All portals need to conduct verification. Parameters are "client_id","ts","nonce","sign". "client_id" is the api key. "client_key" is the secret key. Please be careful.
-2. Ts is the current time stamp. Query with more than 5 seconds time difference will be rejected. "nonce" is a random code that should not be the same with last time query. 
-3. Signature method: link "client_id","ts","nonce" in correct order, use hmac-sha256 to sign. e.g. the unsigned code: client_id=abc&nonce=xyz&ts=1571293029
-4. Signature: sign = hmac.New(client_key, sign_str, sha256)
+
+1. 所有接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。
+
+2. client_id为api key，ts为当前时间戳，与服务器时间差正负5秒会被拒绝，nonce为随机字符串，不能与上次请求所使用相同。
+
+3. 签名方法, 将client_id, ts, nonce进行排序连接，使用hmac-sha256方法进行签名，例如待签名字符串为: client_id=abc&nonce=xyz&ts=1571293029
+
+4. 签名: sign = hmac.New(client_key, sign_str, sha256)
+
 5. Content-Type: application/x-www-form-urlencoded
-6. Coin/Innovation Zone interface, please put the parameters in the request body for the post interface request, and carry the get interface request in the url link
-7. Wallet account interface, please put the authentication information in the header header information, HOO-KEY = api key, Hoo-Sign = sign, Hoo-Timestamp = ts
-8. API key has up to 5 white list IP addresses
+
+6. 币币/创新区接口，post接口请求请将参数放在请求体里面，get接口请求携带在url链接中。
+
+7. 钱包账户接口，请将鉴权信息放在header头部信息，HOO-KEY = api key，Hoo-Sign = sign，Hoo-Timestamp = ts。
+
+8. 每个api key都与ip进行绑定，最多可设置5个ip。
 
 
-# Wallet account API
+# 钱包账户接口
 
-## Get currency information interface
+## 获取币种信息接口
 
-This interface obtains the currency of the HOO platform
+此接口获取HOO平台币种
 
 ```shell
 
@@ -116,13 +128,13 @@ This interface obtains the currency of the HOO platform
 
 ```
 
-### HTTP query
+### HTTP请求
 - GET `/api/pub/v1/coins`
 
-<aside class="notice">Rate limit 10r/m</aside>
+<aside class="notice">限速10r/m</aside>
 
-### Request parameters
-None
+### 请求参数
+无
 
 > Responds:
 
@@ -154,27 +166,27 @@ None
 }
 ```
 
-### Response Content
+### 返回字段
 
-| Field name | Data Type | Description |
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|count|int|Number of currencies|
-|coins|array|Currency details[{|
-|coin_name|string|currency name|
-|coin_id|string|Currency ID|
-|chain_list|array|Coin-backed chains[{|
-|fee_unit|string|Fee currency name|
-|min_amount|integer|Minimum withdrawal amount|
-|fee|integer|Amount of handling fee|
-|max_amount|string|Maximum withdrawal amount|
-|is_withdraw|string|Whether to allow withdrawal|
-|is_accept|string|Whether to allow recharge|
-|chain_name|string|Chain name}]|
-|coin_icon|string|Currency icon}]|
+|count|int|币种数量|
+|coins|array|币种详情[{|
+|coin_name|string|币种名称|
+|coin_id|string|币种ID|
+|chain_list|array|币种支持的链[{|
+|fee_unit|string|手续费币种名称|
+|min_amount|integer|最小提币额|
+|fee|integer|手续费数量|
+|max_amount|string|最大提币额|
+|is_withdraw|string|是否允许提币|
+|is_accept|string|是否允许充值|
+|chain_name|string|链名称}]|
+|coin_icon|string|币种图标}]|
 
-## Add the address for obtaining recharge
+## 新增获取充值地址
 
-This interface gets the user's currency address
+此接口获取用户币种充值地址
 
 ```shell
 
@@ -182,16 +194,16 @@ This interface gets the user's currency address
 
 ```
 
-### HTTP query
+### HTTP请求
 - GET `/api/pub/v1/addresses`
 
-<aside class="notice">Rate limit 10r/m</aside>
+<aside class="notice">限速10r/m</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|coin_name|string|Yes|Currency name, Example: BTC|
-|chain_name|string|No|Chain name，Example: BTC|
+|coin_name|string|是|币种名称，如: BTC|
+|chain_name|string|否|链名称，如: BTC|
 
 > Responds:
 
@@ -212,40 +224,41 @@ This interface gets the user's currency address
 }
 ```
 
-### Response Content
+### 返回字段
 
-| Field name | Data Type | Description |
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|addresses|array|Addresses of different chains of coins[{|
-|address|string|address, which may be an empty string, indicating that no address has been assigned yet|
-|coin_name|string|Currency name|
-|chain_name|string|Chain name}]|
-|count|int|Quantity|
+|addresses|array|币种不同链的地址[{|
+|address|string|地址， 可能为空字符串，表示目前还未分配有地址|
+|coin_name|string|币种名称|
+|chain_name|string|链名称}]|
+|count|int|数量|
 
-## Get recharge records
+## 获取充值记录
 
-This interface obtains the user's recharge record
+此接口获取用户充值记录
 
 ```shell
+
 "https://api.hoolgd.com/api/pub/v1/deposit/bills"
 
 ```
 
-### HTTP query
+### HTTP请求
 - GET `/api/pub/v1/deposit/bills`
 
-<aside class="notice">Rate limit 10r/m</aside>
+<aside class="notice">限速10r/m</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|coin_name|string|Yes|Currency name，Example: BTC|
-|status|int|No|Status 1 Successful 2 In Progress 3 Failed Do not pass or pass other check all|
-|bill_uuid|string|No|Bill serial number|
-|start_at|string|No|start timestamp in seconds|
-|end_at|string|No|Expiration Timestamp Seconds|
-|page|string|No|Page number Default 1|
-|pagesize|string|No|The default number of entries per page is 20|
+|coin_name|string|是|币种名称，如: BTC|
+|status|int|否|状态 1成功 2进行中 3失败 不传或传其他查全部|
+|bill_uuid|string|否|账单流水号|
+|start_at|string|否|开始时间戳 秒级|
+|end_at|string|否|截止时间戳 秒级|
+|page|string|否|页码 默认1|
+|pagesize|string|否|每页条数 默认20|
 
 > Responds:
 
@@ -275,28 +288,28 @@ This interface obtains the user's recharge record
 }
 ```
 
-### Response Content
+### 返回字段
 
-| Field name | Data Type | Description |
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|count|int|Number of bills|
-|bills|array|Bill[{|
-|bill_uuid|string|Bill serial number|
-|status|string|Status 1 Success 2 In Progress 3 Failure|
-|process_time|string|Processing completion timestamp in seconds|
-|chain_name|string|Chain name|
-|amount|string|Quantity|
-|address|string|Receiving address|
-|transaction_id|string|transaction hash|
-|side|string|Inside the station outside the station 1 inside the station 2 outside the station|
-|burn_amount|string|Burn quantity|
-|coin_name|string|Currency name}]|
-|page|int|Page number|
-|pagesize|int|Articles per page|
+|count|int|账单数量|
+|bills|array|账单[{|
+|bill_uuid|string|账单流水号|
+|status|string|状态 1成功 2进行中 3失败|
+|process_time|string|处理完成时间戳 秒级|
+|chain_name|string|链名称|
+|amount|string|数量|
+|address|string|接收地址|
+|transaction_id|string|交易哈希|
+|side|string|站内站内 1站内 2站外|
+|burn_amount|string|燃烧数量|
+|coin_name|string|币种名称}]|
+|page|int|页码|
+|pagesize|int|每条条数|
 
-## User withdrawal interface
+## 用户提币接口
 
-This interface user withdrawal interface
+此接口用于用户提币
 
 ```shell
 
@@ -304,19 +317,19 @@ This interface user withdrawal interface
 
 ```
 
-### HTTP query
+### HTTP请求
 - POST `/api/pub/v1/withdraw`
 
-<aside class="notice">Rate limit 10r/m</aside>
+<aside class="notice">限速10r/m</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|coin_name|string|Yes|Currency name，Example: BTC|
-|chain_name|string|Yes|Chain name，Example: BTC|
-|amount|string|Yes|Quantity|
-|to_address|string|Yes|Receiving address|
-|memo|string|Yes|Receive address memo|
+|coin_name|string|是|币种名称，如: BTC|
+|chain_name|string|是|链名称，如: BTC|
+|amount|string|是|数量|
+|to_address|string|是|接收地址|
+|memo|string|是|接收地址memo|
 
 > Responds:
 
@@ -332,17 +345,17 @@ This interface user withdrawal interface
 }
 ```
 
-### Response Content
+### 返回字段
 
-| Field name | Data Type | Description |
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|order_no|string|Bill serial number|
-|coin_name|string|Currency name|
-|chain_name|string|Chain name|
+|order_no|string|账单流水号|
+|coin_name|string|币种名称|
+|chain_name|string|链名称|
 
-## Get user withdrawal records
+## 获取用户提币记录
 
-This interface obtains the user's withdrawal record
+此接口获取用户提币记录
 
 ```shell
 
@@ -350,21 +363,21 @@ This interface obtains the user's withdrawal record
 
 ```
 
-### HTTP query
+### HTTP请求
 - GET `/api/pub/v1/withdraw/bills`
 
-<aside class="notice">Rate limit 10r/m</aside>
+<aside class="notice">限速10r/m</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|coin_name|string|Yes|Currency name，Example: BTC|
-|status|int|No|Status 1 success 2 in progress 3 failure|
-|bill_uuid|string|No|Bill serial number|
-|start_at|string|No|Start timestamp in seconds|
-|end_at|string|No|Expiration Timestamp Seconds|
-|page|string|No|Page number Default 1|
-|pagesize|string|No|The default number of entries per page is 20|
+|coin_name|string|是|币种名称，如: BTC|
+|status|int|否|状态 1成功2进行中3失败|
+|bill_uuid|string|否|账单流水号|
+|start_at|string|否|开始时间戳 秒级|
+|end_at|string|否|截止时间戳 秒级|
+|page|string|否|页码 默认1|
+|pagesize|string|否|每页条数 默认20|
 
 > Responds:
 
@@ -398,38 +411,38 @@ This interface obtains the user's withdrawal record
 }
 ```
 
-### Response Content
+### 返回字段
 
-| Field name | Data Type | Description |
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|count|int|Number of bills|
-|bills|array|bill[{|
-|bill_uuid|string|Bill serial number|
-|status|string|Status 1 Success 2 In Progress 3 Failure|
-|process_time|string|Processing completion timestamp in seconds|
-|create_at|string|Generate timestamp in seconds|
-|chain_name|string|Chain name|
-|amount|string|Quantity|
-|to_address|string|Receiving address|
-|side|string|Inside the station outside the station 1 inside the station 2 outside the station|
-|coin_name|string|Currency name|
-|from_address|string|Sending address|
-|transaction_list|array|List of transactions on the chain[{|
-|index_no|int|Transaction number|
-|amount|string|Quantity|
-|transaction_id|string|Transaction hash|
-|confirmations|int|Confirmation Num|
-|total_confirmations|int|Total confirmations	|
-|block_url|string|Routing|
-|block_id|int|Transaction block}]|
-|fee|string|Handling fee|
-|fee_unit|string|Fee currency}]|
-|page|int|Page number|
-|pagesize|int|Articles per page|
+|count|int|账单数量|
+|bills|array|账单[{|
+|bill_uuid|string|账单流水号|
+|status|string|状态 1成功 2进行中 3失败|
+|process_time|string|处理完成时间戳 秒级|
+|create_at|string|生成时间戳 秒级|
+|chain_name|string|链名称|
+|amount|string|数量|
+|to_address|string|接收地址|
+|side|string|站内站内 1站内 2站外|
+|coin_name|string|币种名称|
+|from_address|string|发送地址|
+|transaction_list|array|交易上链列表[{|
+|index_no|int|交易序号|
+|amount|string|数量|
+|transaction_id|string|交易哈希|
+|confirmations|int|确认数|
+|total_confirmations|int|总的确认数	|
+|block_url|string|路由|
+|block_id|int|交易区块}]|
+|fee|string|手续费|
+|fee_unit|string|手续费币种}]|
+|page|int|页码|
+|pagesize|int|每条条数|
 
-## Get account status
+## 获取账户状态
 
-This interface gets the account status
+此接口获取账户状态
 
 ```shell
 
@@ -437,13 +450,13 @@ This interface gets the account status
 
 ```
 
-### HTTP query
+### HTTP请求
 - POST `/api/pub/v1/account`
 
-<aside class="notice">Rate limit 10r/m</aside>
+<aside class="notice">限速10r/m</aside>
 
-### Request parameters
-None
+### 请求参数
+无
 
 > Responds:
 
@@ -460,32 +473,37 @@ None
 }
 ```
 
-### Response Content
+### 返回字段
 
-| Field name | Data Type | Description |
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|withdraw_total|string|24h total withdrawal amount|
-|withdraw_left|string|24h remaining withdrawal amount|
-|coin_name|string|Currency name|
-|is_withdraw|string|Whether to allow withdrawal|
+|withdraw_total|string|24h总的提币额|
+|withdraw_left|string|24h剩余提币额|
+|coin_name|string|币种名称|
+|is_withdraw|string|是否允许提币|
 
 
-# WebSocket Guide
-1. Need verification before subscription
-2. Verification method: {"op":"apilogin","sign":"","client_id":"","nonce":"","ts": int type}, e.g: {"op":"apilogin","sign":"abc123","client_id":"abc123","nonce":"1","ts": 1576207749}
-3. Client need to timely upload arbitrary code to check. Server will check status every 30 seconds. Links will be closed if no information received. {"op":"sub", "topic":"hb"}
+# WebSocket说明
 
-## Subscription Topic 
+1. 需要先进行鉴权，才可进行订阅。
+
+2. 鉴权格式: {"op":"apilogin","sign":"","client_id":"","nonce":"","ts": int type},如:{"op":"apilogin","sign":"abc123","client_id":"abc123","nonce":"1","ts": 1576207749}
+
+3. 心跳处理，客户端需定时上发心跳信息，任意字符串，服务端每30秒会检查心跳，超时没有收到自动关闭连接。{"op":"sub", "topic":"hb"}
+
+## 订阅主题
     {"op":"sub", "topic": ""}
 
-### K Line Data
-#### Request parameters
+### K线数据
+#### 请求参数
+
 ```json
 {"op":"sub", "topic": "kline:1Min:EOS-USDT"}
 ```
-|Parameter|Description|
+
+|参数|说明|
 |:---:|:---:|
-|kline:1Min:EOS-USDT|EOS-USDT 1 minute K line|
+|kline:1Min:EOS-USDT|EOS-USDT的1分钟k线|
 
 > Responds:
 
@@ -507,26 +525,29 @@ None
     "type":"60000"
 }
 ```
-#### Data refresh string list
-|Field name|Data Type|Description|
-|:-----:|:------:|:----:|
-|symbol|string|Pair|
-|ticks|object|K line Data|
-|close|string|Local close price|
-|high|string|Local highest price |
-|low|string|Local lowest price|
-|open|string|Local open price|
-|timestamp|integer|Time Stamp ms|
-|volume|string|Volume|
 
-### Each filled orders
-#### Request parameters
+#### 数据更新字段列表
+| 参数名 | 参数类型 | 描述 |
+|:-----:|:------:|:----:|
+|symbol|string|交易对|
+|ticks|object|k线信息|
+|close|string|本阶段收盘价|
+|high|string|本阶段最高价|
+|low|string|本阶段最低价|
+|open|string|本阶段开盘价
+|timestamp|integer|时间戳 毫秒|
+|volume|string|成交量|
+
+### 逐笔成交
+#### 请求参数
+
 ```json
 {"op":"sub", "topic": "trade:LTC-USDT"}
 ```
-|Parameter|Description|
+
+|参数|说明|
 |:---:|:---:|
-|trade:LTC-USDT|LTC-USDT Each filled orders|
+|trade:LTC-USDT|LTC-USDT逐笔成交记录|
 
 > Responds:
 
@@ -542,36 +563,41 @@ None
 }
 ```
 
-#### Data refresh string list
+#### 数据更新字段列表
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|Volume|
-|price|string|Price|
-|side|integer|Direction，1 buy，-1 sell|
-|symbol|string|Pair|
-|timestamp|integer|Time Stamp ms|
-|volume|string|Volume|
+|amount|string|成交额|
+|price|string|成交价|
+|side|integer|成交方向，1买，-1卖|
+|symbol|string|交易对|
+|timestamp|integer|时间戳 毫秒|
+|volume|string|成交量|
 
+### 深度
+#### 请求参数
 
-### Depth change
-#### Request parameters
 ```json
 {"op":"sub", "topic": "depth:0:LTC-USDT"}
 ```
-|Parameter|Description|
+
+|参数|说明|
 |:---:|:---:|
-|depth:0:LTC-USDT|Depth|
+|depth:0:LTC-USDT|深度|
 
 > Responds:
 
 ```json
 {
-    "bids": [
-        {'price': '2.923', 'quantity': '12'}
+    "bids":[
+        {'price': '2.923', 'quantity': '12'},
+        {'price': '2.823', 'quantity': '12'},
+        {'price': '2.723', 'quantity': '16'}
     ], 
-    "asks": [
-        {'price': '3.05', 'quantity': '3.48'}
+    "asks":[
+        {'price': '3.05', 'quantity': '3.48'},
+        {'price': '3.31', 'quantity': '5'},
+        {'price': '3.55', 'quantity': '10'}
     ],
     "symbol":"EOS-USDT",
     "timestamp":1572851208935,
@@ -579,22 +605,23 @@ None
 }
 ```
 
-#### Data refresh string list
+#### 数据更新字段列表
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|bids|object|Current all buy orders[{price, quantity}]|
-|asks|object|Current all sell orders[{price, quantity}]|
+|bids|object|当前所有买单[{price 价格, quantity 数量}]|
+|asks|object|当前所有卖单[{price 价格, quantity 数量}]|
 
+### 行情
+#### 请求参数
 
-### Market information change
-#### Request parameters
 ```json
 {"op":"sub", "topic": "quotes"}
 ```
-|Parameter|Description|
+
+|参数|说明|
 |:---:|:---:|
-|quotes|Market Information|
+|quotes|行情|
 
 > Responds:
 
@@ -609,25 +636,27 @@ None
     "volume":"17965.65"
 }
 ```
-#### Data refresh string list
+#### 数据更新字段列表
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|Amount|
-|change|string|Change|
-|price|string|Current price|
-|symbol|string|Pair|
-|timestamp|integer|Time Stamp ms|
-|volume|string|Volume|
+|amount|string|成交额|
+|change|string|涨跌幅|
+|price|string|当前价|
+|symbol|string|交易对|
+|timestamp|integer|时间戳 毫秒|
+|volume|string|24小时成交量|
 
-### Account balance change
-#### Request parameters
+### 账户余额变化
+#### 请求参数
+
 ```json
 {"op":"sub", "topic": "accounts"}
 ```
-|Parameter|Description|
+
+|参数|说明|
 |:---:|:---:|
-|accounts|Account balance change|
+|accounts|账户余额变化|
 
 > Responds:
 
@@ -640,28 +669,31 @@ None
     "total":"4265.9558528"
 }
 ```
-#### Data refresh string list
 
-|Field name|Data Type|Description|
+#### 数据更新字段列表
+
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|available|string|Available balance|
-|freeze|string|Locked balance|
-|symbol|string|Coin|
-|total|string|Total balance|
+|available|string|可用余额|
+|freeze|string|冻结余额|
+|symbol|string|币种|
+|total|string|总余额|
 
-### Order Change
-#### Request parameters
+### 委托变化
+#### 请求参数
+
 ```json
 {"op":"sub", "topic": "orders:BTC-USDT"}
 ```
-|Parameter|Description|
+
+|参数|说明|
 |:---:|:---:|
-|orders:BTC-USDT|Order Change|
+|orders:BTC-USDT|委托变化|
 
 > Responds:
 
 ```json
-// Place new order
+// 下单
 {
     "left":"1",
     "order_id":"11574948935833473",
@@ -674,11 +706,10 @@ None
     "timestamp":1574949805841,
     "topic":"orders:BTC-USDT",
     "trade_no":"499081745280826070655",
-    "match_qty":"0",
-    "match_price":"0"
+    "match_qty":"0"
 }
 
-// Cancel order
+// 撤单
 {
     "left":"0",
     "order_id":"11574948935833473",
@@ -696,52 +727,52 @@ None
 }
 ```
 
-#### Response Content
+#### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|left|string|Remaining number|
-|order_id|string|Order id|
-|order_type|int|Order Type,1 Limit，3 Market|
-|price|string|Price|
-|quantity|string|Amount|
-|side|int|Direction，1 buy，-1 sell|
-|status|int|Status  2 Outstanding，3 Partial filled，4 all filled，5 cancel after partial filled，6 all cancel|
-|symbol|string|Pair|
-|timestamp|int|Time to fill ms|
-|trade_no|string|Trade serial number|
-|match_qty|string|Filled quantity|
-|match_price|string|Average transaction price|
+|left|string|剩余数量|
+|order_id|string|订单id|
+|order_type|int|订单类型,1限价，3市价|
+|price|string|委托价|
+|quantity|string|委托数量|
+|side|int|方向，1买，-1卖|
+|status|int|状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消|
+|symbol|string|交易对|
+|timestamp|int|创建时间 毫秒|
+|trade_no|string|订单流水号|
+|match_qty|string|已成交数量|
+|match_price|string|成交均价|
 
 
-# Basic information
+# 基础信息
 
-## All trading pairs
-This portal will respond all pairs hoo support
+## 所有交易对
+此接口返回全部或指定hoo支持的交易对。
 
 ```shell
-Spot
+币币市场
 
 "https://api.hoolgd.com/open/v1/tickers"
 
-Innovate
+创新区市场
 
 "https://api.hoolgd.com/open/innovate/v1/tickers"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币市场
 - GET ` /open/v1/tickers`
 
-Innovate
+创新区市场
 - GET ` /open/innovate/v1/tickers`
 
-<aside class="notice">Rate limit 1r/s</aside>
+<aside class="notice">限速1r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|no|Pair|
+|symbol|string|否|交易对，如: BTC-USDT|
 
 > Responds:
 
@@ -763,41 +794,41 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|24h amount|
-|change|string|24h change|
-|high|string|24h high|
-|low|string|24h low|
-|price|string|Current price|
-|symbol|string|Pair|
-|amt_num|integer|Price precision|
-|qty_num|integer|Amount precision|
-|volume|string|24h volume|
+|amount|string|24小时成交额|
+|change|string|24小时涨跌幅|
+|high|string|24小时最高|
+|low|string|24小时最低|
+|price|string|当前价|
+|symbol|string|交易对|
+|amt_num|integer|价格精度|
+|qty_num|integer|数量精度|
+|volume|string|24小时成交量|
 
-## Account balance
+## 账户余额
 
 ```shell
-Spot
+币币市场
 
 "https://api.hoolgd.com/open/v1/balance"
 
-Innovate
+创新区市场
 
 "https://api.hoolgd.com/open/innovate/v1/balance"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/balance`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/balance`
 
-### Request parameters
-None
+### 请求参数
+无
 
 > Responds:
 
@@ -814,35 +845,37 @@ None
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|Available balance|
-|symbol|string|Coin|
-|freeze|string|Locked balance|
+|amount|string|可用余额|
+|symbol|string|币种|
+|freeze|string|冻结余额|
 
-## Server time stamp
+## 服务器时间戳
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/timestamp"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/timestamp"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/timestamp`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/timestamp`
 
-### Request parameters
-This portal not receive any parameter
+### 请求参数
+|参数名|参数类型|是否必须|描述|
+|:---:|:---:|:---:|:---:|
+无
 > Responds:
 
 ```json
@@ -853,41 +886,41 @@ This portal not receive any parameter
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|data|string|time stamp|
+|data|string|时间戳|
 
 
-# Market Information
+# 行情数据
 
-## Market K line
+## 市场k线数据
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/kline"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/kline"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/kline`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/kline`
 
-<aside class="notice">Rate limit 0.1r/s</aside>
+<aside class="notice">限速0.1r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair e.g: BTC-USDT|
-|type|string|yes|Type e.g: 1Min, 5Min, 15Min, 30Min|
+|symbol|string|是|交易对，如: BTC-USDT|
+|type|string|是|类型1Min, 5Min, 15Min, 30Min等|
 
 > Responds:
 
@@ -908,43 +941,43 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|Volume|
-|close|string|Local close price|
-|high|string|Local highest price |
-|low|string|Local lowest price|
-|open|string|Local open price
-|time|integer|Time|
-|volume|string|Volume|
+|amount|string|成交额|
+|close|string|本阶段收盘价|
+|high|string|本阶段最高价|
+|low|string|本阶段最低价|
+|open|string|本阶段开盘价
+|time|integer|时间|
+|volume|string|成交量|
 
-## Market depth
+## 市场深度数据
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/depth"
 
-Innovate
+创新区交易
 
-"https://api.hoolgd.com/open/Innovate/v1/depth"
+"https://api.hoolgd.com/open/innovate/v1/depth"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/depth`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/depth`
 
-<aside class="notice">Rate limit 10r/s</aside>
+<aside class="notice">限速10r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair|
+|symbol|string|是|交易对|
 
 > Responds:
 
@@ -967,39 +1000,38 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|bids|object|Current all buy orders[{price, quantity}]|
-|asks|object|Current all sell orders[{price, quantity}]|
+|bids|object|当前所有买单[{price 价格, quantity 数量}]|
+|asks|object|当前所有卖单[{price 价格, quantity 数量}]|
 
-
-## Get last 5 trade orders
+## 获取最近5条成交
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/tickers/trade"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/tickers/trade"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/tickers/trade`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/tickers/trade`
 
-<aside class="notice">Rate limit 10r/s</aside>
+<aside class="notice">限速10r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair|
+|symbol|string|是|交易对|
 
 > Responds:
 
@@ -1016,48 +1048,48 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|Volume|
-|price|string|Price|
-|side|integer|Direction，1 buy，-1 sell|
-|time|integer|Time|
-|volume|string|Volume|
+|amount|string|成交额|
+|price|string|成交价|
+|side|integer|成交方向，1买，-1卖|
+|time|integer|时间|
+|volume|string|成交量|
 
 
-# Market Data
+# 现货
 
-## Place new order
+## 下单
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/orders/place"
 
-Innovate
+创新区交易
 
-"https://api.hoolgd.com/open/innovate/v1/orders/place"
+"https://api.hoolgd.com/innovate/open/v1/orders/place"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - POST ` /open/v1/orders/place`
 
-Innovate
+创新区交易
 - POST ` /open/innovate/v1/orders/place`
 
-### Request parameters(form-data parameters)
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair|
-|price|string|yes|price|
-|quantity|string|yes|quantity|
-|side|int|yes|Direction，1 buy，-1 sell|
+|symbol|string|是|交易对|
+|price|string|是|价格|
+|quantity|string|是|数量|
+|side|int|是|方向,1买，-1卖|
 
-<aside class="warning">For both buy and sell, quantity represents trading coin, such as EOS of EOS-USDT</aside>
-<aside class="warning">The first order of the new trading pair in the innovation zone must be placed through this interface, and users can place the order after the trading is completed.</aside>
+<aside class="warning">无论买或卖，quantity都表示交易币，如EOS-USDT，quantity都代表eos的数量</aside>
+<aside class="warning">创新区新上交易对第一笔订单必须通过此接口下单，成交后用户才能下单</aside>
 
 > Responds:
 
@@ -1072,39 +1104,38 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|order_id|string|Order placing number|
-|trade_no|string|Trade serial number|
+|order_id|string|委托号|
+|trade_no|string|流水号|
 
-
-## Cancel an order in order
+## 撤销单个订单
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/orders/cancel"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/orders/cancel"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - POST ` /open/v1/orders/cancel`
 
-Innovate
+创新区交易
 - POST ` /open/innovate/v1/orders/cancel`
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair|
-|order_id|string|yes|Order placing number|
-|trade_no|string|yes|Trade serial number|
+|symbol|string|是|交易对|
+|order_id|string|是|委托号|
+|trade_no|string|是|流水号|
 
 > Responds:
 
@@ -1115,38 +1146,37 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-This portal not receive any parameter
+无
 
-## Cancel all or part of the orders in order
+## 撤销部分或所有委托中订单
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/orders/batcancel"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/orders/batcancel"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - POST ` /open/v1/orders/batcancel`
-
-Innovate
+  创新区交易
 - POST ` /open/innovate/v1/orders/batcancel`
 
-<aside class="notice">Rate limit 1r/s</aside>
+<aside class="notice">限速1r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair|
-|order_ids|string|no|Trading pair id, 1000, 2000, 3000, comma-separated order id, empty all cancel orders|
+|symbol|string|是|交易对|
+|order_ids|string|否|交易对id，1000,2000,3000， 英文逗号分隔订单id，为空全部撤单|
 
 > Responds:
 
@@ -1157,35 +1187,35 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-This portal not receive any parameter
+无
 
-## Active orders
+## 委托中列表
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/orders/last"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/orders/last"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/orders/last`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/orders/last`
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair|
+|symbol|string|是|交易对|
 
 > Responds:
 
@@ -1210,52 +1240,52 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|symbol|string|Pair
-|order_id|string|Order ID|
-|trade_no|string|Trade serial number|
-|price|string|price|
-|quantity|string|Amount|
-|match_amt|string|Filled amount|
-|match_qty|string|Filled quantity|
-|match_price|string|Average price|
-|side|int|Direction，1 buy，-1 sell|
-|order_type|int|order_type, 1 Limit，3 Market|
-|create_at|int|Create time|
+|symbol|string|交易对
+|order_id|string|订单ID|
+|trade_no|string|订单流水号|
+|price|string|委托价|
+|quantity|string|委托数量|
+|match_amt|string|已成交金额|
+|match_qty|string|已成交数量|
+|match_price|string|成交均价|
+|side|int|方向，1买，-1卖|
+|order_type|int|订单类型,1限价，3市价|
+|create_at|int|创建时间|
 
-## Order history
+## 订单列表
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/orders"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/orders"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/orders`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/orders`
 
-<aside class="notice">Rate limit 0.5r/s</aside>
+<aside class="notice">限速0.5r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair e.g: EOS-USDT|
-|pagenum|int|no|Page|
-|pagesize|int|no|Page size, default 20, min 10, max 50|
-|side|int|no|Direction，1 buy，-1 sell，0 all|
-|start|int|no|Starting time, time stamp|
-|end|int|no|Closing time, time stamp|
+|symbol|string|是|交易对,如EOS-USDT|
+|pagenum|int|否|页码|
+|pagesize|int|否|页大小,最小10, 最大50,默认20|
+|side|int|否|方向，1买，-1卖，0所有|
+|start|int|否|时间，时间戳|
+|end|int|否|结束时间，时间戳|
 
 > Responds:
 
@@ -1285,49 +1315,49 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|order_id|string|Order id|
-|trade_no|string|Trade serial number|
-|symbol|string|Pair|
-|price|string|Price|
-|quantity|string|Quantity|
-|match_amt|string|Filled amount|
-|match_qty|string|Filled quantity|
-|match_price|string|Average price|
-|side|int|Direction，1 buy，-1 sell|
-|order_type|int|order_type, 1 Limit，3 Market|
-|status|int|Status  2 Outstanding，3 Partial filled，4 all filled，5 cancel after partial filled，6 all cancel|
-|create_at|int|Created Time|
+|order_id|string|订单id|
+|trade_no|string|订单流水号|
+|symbol|string|交易对|
+|price|string|委托价|
+|quantity|string|委托数量|
+|match_amt|string|已成交金额|
+|match_qty|string|已成交数量|
+|match_price|string|成交均价|
+|side|int|方向，1买，-1卖|
+|order_type|int|订单类型,1限价，3市价|
+|status|int|状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消|
+|create_at|int|创建时间|
 
-## Get order details
+## 单个订单成交明细
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/orders/detail"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/orders/detail"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/orders/detail`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/orders/detail`
 
-<aside class="notice">Rate limit 6r/s</aside>
+<aside class="notice">限速6r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair e.g: EOS-USDT|
-|order_id|string|yes|Order id|
+|symbol|string|是|交易对,如EOS-USDT|
+|order_id|string|是|委托订单id|
 
 > Responds:
 
@@ -1349,6 +1379,7 @@ Innovate
         'status': 4,
         'create_at': 1574922846832,
         'trades': [{
+            'trade_id': "1",
             'amount': '7', 
             'price': '70000', 
             'quantity': '0.0001',
@@ -1359,58 +1390,58 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|order_id|string|Order id|
-|trade_no|string|Trade serial number|
-|symbol|string|Pair|
-|price|string|Price|
-|quantity|string|Amount|
-|match_amt|string|Filled amount|
-|match_qty|string|Filled quantity|
-|match_price|string|Average price|
-|fee|string|fee|
-|side|int|Direction，1 buy，-1 sell|
-|order_type|int|order_type, 1 Limit，3 Market|
-|status|int|Status  2 Outstanding，3 Partial filled，4 all filled，5 cancel after partial filled，6 all cancel|
-|create_at|int|Order creation time|
-|trades|object|Filled order data[{|
-|trade_id|string|trade id|
-|amount|string|Amount of every filled order|
-|price|string|Price of every filled order|
-|quantity|string|quantity of every filled order|
-|fee|string|Fee of every filled order|
-|time|int|Time of every filled order}]|
+|order_id|string|订单id|
+|trade_no|string|订单流水号|
+|symbol|string|交易对|
+|price|string|委托价|
+|quantity|string|委托数量|
+|match_amt|string|已成交金额|
+|match_qty|string|已成交数量|
+|match_price|string|成交均价|
+|fee|string|手续费|
+|side|int|方向，1买，-1卖|
+|order_type|int|订单类型,1限价，3市价|
+|status|int|状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消|
+|create_at|int|委托单创建时间|
+|trades|object|已成交数据[{|
+|trade_id|string|成交记录id|
+|amount|string|每条成交记录的成交额|
+|price|string|每条成交记录的成交价|
+|quantity|string|每条成交记录的成交量|
+|fee|string|每条成交记录的手续费|
+|time|int|每条成交记录的成交时间}]|
 
-## Paging to get order details
+## 分页获取订单成交明细
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/orders/detailmore"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/orders/detailmore"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/orders/detailmore`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/orders/detailmore`
 
-<aside class="notice">Rate limit 6r/s</aside>
+<aside class="notice">限速6r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair e.g: EOS-USDT|
-|pagenum|int|no|Page|
-|pagesize|int|no|Page size, default 10, min 10, max 50|
+|symbol|string|是|交易对,如EOS-USDT|
+|pagesize|int|否|页大小,最小10, 最大50,默认10|
+|pagenum|int|否|页码，默认为1|
 
 > Responds:
 
@@ -1435,44 +1466,44 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|count|int|quantity of order|
-|trades|object|Filled order data[{|
-|symbol|string|Pair|
-|side|int|Direction，1 buy，-1 sell|
-|trade_id|int|trade id|
-|amount|string|Amount of every filled order|
-|price|string|Price of every filled order|
-|quantity|string|quantity of every filled order|
-|fee|string|Fee of every filled order|
-|time|int|Time of every filled order}]|
+|count|int|成交订单数量|
+|trades|object|已成交数据[{|
+|symbol|string|交易对|
+|side|int|方向，1买，-1卖|
+|trade_id|int|成交记录id|
+|amount|string|每条成交记录的成交额|
+|price|string|每条成交记录的成交价|
+|quantity|string|每条成交记录的成交量|
+|fee|string|每条成交记录的手续费|
+|time|int|每条成交记录的成交时间}]|
 
-## 	Get the user's transaction fee for a certain transaction pair
+## 获取用户某个交易对手续费
 
 ```shell
-Spot
+币币市场
 
 "https://api.hoolgd.com/open/v1/fee-rate"
 
-Innovate
+创新区市场
 
 "https://api.hoolgd.com/open/innovate/v1/fee-rate"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/fee-rate`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/fee-rate`
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair e.g: EOS-USDT|
+|symbol|string|是|交易对|
 
 > Responds:
 
@@ -1486,39 +1517,39 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|maker_fee|string|maker fee|
-|taker_fee|string|taker fee|
+|maker_fee|string|挂单手续费|
+|taker_fee|string|吃单手续费|
 
 
-# Public API
+# 公共接口
 
-## All trading pairs
+## 所有交易对
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/tickers/market"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/tickers/market"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/tickers/market`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/tickers/market`
 
-<aside class="notice">Rate limit 6r/s</aside>
+<aside class="notice">限速6r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
 
 > Responds:
@@ -1541,45 +1572,45 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|24h volume|
-|change|string|24h change|
-|high|string|24h high|
-|low|string|24h low|
-|price|string|Current price|
-|symbol|string|Pair|
-|amt_num|integer|Price precision|
-|qty_num|integer|Amount precision|
-|volume|string|24h volume|
+|amount|string|24小时成交额|
+|change|string|24小时涨跌幅|
+|high|string|24小时最高|
+|low|string|24小时最低|
+|price|string|当前价|
+|symbol|string|交易对|
+|amt_num|integer|价格精度|
+|qty_num|integer|数量精度|
+|volume|string|24小时成交量|
 
-## Depth
+## 深度
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/depth/market"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/depth/market"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/depth/market`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/depth/market`
 
-<aside class="notice">Rate limit 5r/s</aside>
+<aside class="notice">限速5r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:
-|symbol|string|yes|Pair e.g: BTC-USDT|
+|symbol|string|是|交易对名称,如BTC-USDT|
 
 > Responds:
 
@@ -1602,38 +1633,38 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|bids|object|Current all buy orders[{price, quantity}]|
-|asks|object|Current all sell orders[{price, quantity}]|
+|bids|object|当前所有买单[{price 价格, quantity 数量}]|
+|asks|object|当前所有卖单[{price 价格, quantity 数量}]|
 
-## Each filled orders
+## 逐笔成交
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/trade/market"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/trade/market"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/trade/market`
 
-Innovate
-- GET ` /open/innovate/v1/trade/market`
+创新区交易
+- GET ` /open/innovate/1/trade/market`
 
-<aside class="notice">Rate limit 10r/s</aside>
+<aside class="notice">限速10r/s</aside>
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair e.g: BTC-USDT|
+|symbol|string|是|交易对名称,如BTC-USDT|
 
 > Responds:
 
@@ -1650,42 +1681,42 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|Volume|
-|price|string|Price|
-|side|integer|Direction，1 buy，-1 sell|
-|time|integer|Time|
-|volume|string|Volume|
+|amount|string|成交额|
+|price|string|成交价|
+|side|integer|成交方向，1买，-1卖|
+|time|integer|时间|
+|volume|string|成交量|
 
-<aside class="notice">Rate limit 1r/s</aside>
-
-## Market K line
+## k线数据
 
 ```shell
-Spot
+币币交易
 
 "https://api.hoolgd.com/open/v1/kline/market"
 
-Innovate
+创新区交易
 
 "https://api.hoolgd.com/open/innovate/v1/kline/market"
 ```
 
-### HTTP query
-Spot
+### HTTP请求
+币币交易
 - GET ` /open/v1/kline/market`
 
-Innovate
+创新区交易
 - GET ` /open/innovate/v1/kline/market`
 
-### Request parameters
-|Field name|Data Type|Required|Description|
+<aside class="notice">限速1r/s</aside>
+
+### 请求参数
+|参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
-|symbol|string|yes|Pair e.g: BTC-USDT|
-|type|string|yes|Type e.g: 1Min, 5Min, 15Min, 30Min|
+|symbol|string|是|交易对，如: BTC-USDT|
+|type|string|是|类型1Min, 5Min, 15Min, 30Min等|
 
 > Responds:
 
@@ -1706,20 +1737,20 @@ Innovate
 }
 ```
 
-### Response Content
+### 返回字段
 
-|Field name|Data Type|Description|
+| 参数名 | 参数类型 | 描述 |
 |:-----:|:------:|:----:|
-|amount|string|Volume|
-|close|string|Local close price|
-|high|string|Local highest price |
-|low|string|Local lowest price|
-|open|string|Local open price
-|time|integer|Time|
-|volume|string|Volume|
+|amount|string|成交额|
+|close|string|本阶段收盘价|
+|high|string|本阶段最高价|
+|low|string|本阶段最低价|
+|open|string|本阶段开盘价
+|time|integer|时间|
+|volume|string|成交量|
 
 
-# Wallet account interface API call example
+# 钱包账户API调用示例
 
 > Python:
 
@@ -1844,8 +1875,7 @@ if __name__ == '__main__':
 ```
 
 
-
-# API Example
+# 现货API调用示例
 
 > Python:
 
@@ -1858,7 +1888,6 @@ import hmac
 import hashlib
 import ujson
 import random
-
 
 host = "https://api.hoolgd.com"
 client_id = ""
@@ -1873,79 +1902,79 @@ def gen_sign(client_id, client_key):
     obj["sign"] = v.hexdigest()
     return obj 
 
-print("> Active orders")
-# Spot
+print("> 获取open委托中")
+# 币币交易
 path = "/open/v1/orders/last"
-# Innovate
+# 创新区交易
 # path = "/open/innovate/v1/orders/last"
 obj = gen_sign(client_id, client_key)
 obj.update({"symbol": "ETH-USDT"})
 res = requests.get(host + path, params=obj)
 print(ujson.loads(res.content))
 
-print("> Get an order details")
-# Spot
+print("> 获取单个订单成交明细")
+# 币币交易
 path = "/open/v1/orders/detail"
-# Innovate
+# 创新区交易
 # path = "/open/innovate/v1/orders/detail"
 obj = gen_sign(client_id, client_key)
 obj.update({"order_id": "11574751725833010", "symbol": "BTC-USDT"})
 res = requests.get(host + path, params=obj)
 print(ujson.loads(res.content))
 
-print("> Paging to get order details")
-# Spot
+print("> 分页获取成交明细")
+# 币币交易
 path = "/open/v1/orders/detailmore"
-# Innovate
+# 创新区交易
 # path = "/open/innovate/v1/orders/detailmore"
 obj = gen_sign(client_id, client_key)
 obj.update({"symbol": "BTC-USDT", "pagesize": 10, "pagenum": 1"})
 res = requests.get(host + path, params=obj)
 print(ujson.loads(res.content))
 
-print("> Get the user's transaction fee for a certain transaction pair")
-# Spot
+print("> 获取用户某个交易对手续费")
+# 币币交易
 path = "/open/v1/orders/fee-rate"
-# Innovate
+# 创新区交易
 # path = "/open/innovate/v1/orders/fee-rate"
 obj = gen_sign(client_id, client_key)
 obj.update({"symbol": "BTC-USDT"})
 res = requests.get(host + path, params=obj)
 print(ujson.loads(res.content))
 
-print("> Market K line")
-# Spot
+print("> 获取kline")
+# 币币交易
 path = "/open/v1/kline"
-# Innovate
-path = "/open/innovate/v1/kline"
+# 创新区交易
+# path = "/open/innovate/v1/kline"
 obj = gen_sign(client_id, client_key)
 obj.update({"symbol": "EOS-USDT", "type": "1Min"})
 res = requests.get(host + path, params=obj)
 print(ujson.loads(res.content))
 
-print("> Account balance")
-# Spot
+print("> 获取余额")
+# 币币交易
 path = "/open/v1/balance"
-# Innovate
+# 创新区交易
 # path = "/open/innovate/v1/balance"
 obj = gen_sign(client_id, client_key)
 res = requests.get(host + path, params=obj)
 print(ujson.loads(res.content))
 
-print("> Get last 5 trade orders")
-# Spot
+print("> 获取最近成交记录")
+# 币币交易
 path = "/open/v1/tickers/trade"
-# Innovate
+# 创新区交易
 # path = "/open/innovate/v1/tickers/trade"
 obj = gen_sign(client_id, client_key)
 obj.update({"symbol": "EOS-USDT"})
 res = requests.get(host + path, params=obj)
 print(ujson.loads(res.content))
 
-print("> Place new order")
-# Spot
+print("> 下单")
+# 币币交易
 path = "/open/v1/orders/place"
-# Innovate
+# 创新区交易
 # path = "/open/innovate/v1/orders/place"
 obj = gen_sign(client_id, client_key)
 obj.update({"symbol": "BTC-USDT", "price": "8850.21", "quantity": "0.1", "side": "1"})
@@ -1953,10 +1982,7 @@ res = requests.post(host + path, data=obj)
 print(ujson.loads(res.content))
 ```
 
-
-# Websocket Example
-
-> Python:
+# Websocket示例
 
 ```python
 # -*- coding:utf-8 -*-
@@ -1971,9 +1997,9 @@ import uvloop
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-# Spot
+# 币币交易
 host = "wss://api.hoolgd.com/ws"
-# Innovate
+# 创新区交易
 # host = "wss://api.hoolgd.com/wsi"
 client_id = ""
 client_key = ""
@@ -2012,9 +2038,8 @@ async def startup():
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(startup())
-
 ```
 
 # HooSwap
 
-[HooSwapExample](https://github.com/hoodoc/doc)
+[HooSwap示例说明](https://github.com/hoodoc/doc)
