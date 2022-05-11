@@ -84,7 +84,7 @@ parse_args() {
 
 check_version_lang() {
   #
-  branch=$(git describe --contains --all HEAD)
+  branch=$(git describe --contains --all HEAD | rev | cut -d '/' -f 1 | rev)
   echo "branch="$branch""
   #
   language=$(echo $branch | rev | cut -d '_' -f 1 | rev)
