@@ -1657,7 +1657,7 @@ search: False
 - GET ` /open/v1/trade/market`
 
 创新区交易
-- GET ` /open/innovate/1/trade/market`
+- GET ` /open/innovate/v1/trade/market`
 
 <aside class="notice">限速10r/s</aside>
 
