@@ -15,6 +15,8 @@ Welcome to use Hoo API！ You can use this API get market information, trading a
 
 The code will display on the right side of this document. Currently we only provide "shell" code examples.
 
+It can be accessed using the following domain names: api.hoolgd.com
+
 Welcome all professional maker strategies and organizations for long term market making program.
 
 ##  Wallet Account API
