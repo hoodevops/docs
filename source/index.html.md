@@ -1056,7 +1056,8 @@ Innovate
 |symbol|string|yes|Pair|
 |price|string|yes|price|
 |quantity|string|yes|quantity|
-|side|int|yes|Direction，1 buy，-1 sell|
+|side|int|yes|Direction, 1 buy, -1 sell|
+|order_type|string|no|Direction, limit(default), market|
 
 <aside class="warning">For both buy and sell, quantity represents trading coin, such as EOS of EOS-USDT</aside>
 <aside class="warning">The first order of the new trading pair in the innovation zone must be placed through this interface, and users can place the order after the trading is completed.</aside>
@@ -1950,7 +1951,7 @@ path = "/open/v1/orders/place"
 # Innovate
 # path = "/open/innovate/v1/orders/place"
 obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT", "price": "8850.21", "quantity": "0.1", "side": "1"})
+obj.update({"symbol": "BTC-USDT", "price": "8850.21", "quantity": "0.1", "side": "1", "order_type": "LIMIT"})
 res = requests.post(host + path, data=obj)
 print(ujson.loads(res.content))
 ```
