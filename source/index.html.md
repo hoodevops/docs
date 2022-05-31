@@ -1087,6 +1087,7 @@ search: False
 |price|string|是|价格|
 |quantity|string|是|数量|
 |side|int|是|方向,1买，-1卖|
+|order_type|string|否|买卖单类型,LIMIT限价单（默认）,MARKET市价单|
 
 <aside class="warning">无论买或卖，quantity都表示交易币，如EOS-USDT，quantity都代表eos的数量</aside>
 <aside class="warning">创新区新上交易对第一笔订单必须通过此接口下单，成交后用户才能下单</aside>
@@ -1977,7 +1978,7 @@ path = "/open/v1/orders/place"
 # 创新区交易
 # path = "/open/innovate/v1/orders/place"
 obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT", "price": "8850.21", "quantity": "0.1", "side": "1"})
+obj.update({"symbol": "BTC-USDT", "price": "8850.21", "quantity": "0.1", "side": "1", "order_type": "LIMIT"})
 res = requests.post(host + path, data=obj)
 print(ujson.loads(res.content))
 ```
