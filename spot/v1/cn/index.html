@@ -2317,8 +2317,8 @@
 <tr>
 <td style="text-align: center">price</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">是</td>
-<td style="text-align: center">价格</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">价格，如果是限价单，必填</td>
 </tr>
 <tr>
 <td style="text-align: center">quantity</td>
@@ -2331,6 +2331,12 @@
 <td style="text-align: center">int</td>
 <td style="text-align: center">是</td>
 <td style="text-align: center">方向,1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">order_type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">买卖单类型,LIMIT限价单（默认）,MARKET市价单</td>
 </tr>
 </tbody></table>
 
@@ -3682,7 +3688,7 @@
 </span><span class="s"># 创新区交易</span><span class="err">
 </span><span class="s"># path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">innovate</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">orders</span><span class="o">/</span><span class="n">place</span><span class="s">"</span><span class="err">
 </span><span class="s">obj = gen_sign(client_id, client_key)</span><span class="err">
-</span><span class="s">obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">", "</span><span class="n">price</span><span class="s">": "</span><span class="mf">8850.21</span><span class="s">", "</span><span class="n">quantity</span><span class="s">": "</span><span class="mf">0.1</span><span class="s">", "</span><span class="n">side</span><span class="s">": "</span><span class="mi">1</span><span class="s">"})</span><span class="err">
+</span><span class="s">obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">", "</span><span class="n">price</span><span class="s">": "</span><span class="mf">8850.21</span><span class="s">", "</span><span class="n">quantity</span><span class="s">": "</span><span class="mf">0.1</span><span class="s">", "</span><span class="n">side</span><span class="s">": "</span><span class="mi">1</span><span class="s">", "</span><span class="n">order_type</span><span class="s">": "</span><span class="n">LIMIT</span><span class="s">"})</span><span class="err">
 </span><span class="s">res = requests.post(host + path, data=obj)</span><span class="err">
 </span><span class="s">print(ujson.loads(res.content))</span><span class="err">
 </span></code></pre><h1 id='websocket-2'>Websocket示例</h1><pre class="highlight python tab-python"><code><span class="c"># -*- coding:utf-8 -*-</span>
