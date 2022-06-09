@@ -1054,7 +1054,7 @@ Innovate
 |Field name|Data Type|Required|Description|
 |:---:|:---:|:---:|:---:|
 |symbol|string|yes|Pair|
-|price|string|yes|price|
+|price|string|no|price, if order type is LIMIT,Required|
 |quantity|string|yes|quantity|
 |side|int|yes|Direction, 1 buy, -1 sell|
 |order_type|string|no|Direction, limit(default), market|
