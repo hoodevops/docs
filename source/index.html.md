@@ -1084,7 +1084,7 @@ search: False
 |参数名|参数类型|是否必须|描述|
 |:---:|:---:|:---:|:---:|
 |symbol|string|是|交易对|
-|price|string|是|价格|
+|price|string|否|价格，如果是限价单，必填|
 |quantity|string|是|数量|
 |side|int|是|方向,1买，-1卖|
 |order_type|string|否|买卖单类型,LIMIT限价单（默认）,MARKET市价单|
